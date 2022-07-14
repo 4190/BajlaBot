@@ -56,7 +56,6 @@ class Program
         // Subscribe the logging handler to both the client and the CommandService.
         _client.Log += Log;
         _commands.Log += Log;
-        _client.MessageReceived += HandleCommandAsync;
 
         // Setup your DI container.
         _services = ConfigureServices();
@@ -117,8 +116,8 @@ class Program
 
     private async Task MainAsync()
     {
-        ConfigObject config = new ConfigObject();
-        config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText("E:\\C#\\C#programy\\Ina\\Uwu\\Uwu\\config\\config.json"));
+        await InitCommands();
+        ConfigObject config = JsonConvert.DeserializeObject<ConfigObject>(File.ReadAllText("E:\\C#\\C#programy\\Ina\\Uwu\\Uwu\\config\\config.json"));
         // Centralize the logic for commands into a separate method.
         
 
